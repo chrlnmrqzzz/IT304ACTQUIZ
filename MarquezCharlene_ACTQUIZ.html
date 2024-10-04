@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARQUEZ ACTQUIZ - OCT 4</title>
+	
+	<style>
+	
+	  body {
+            font-family: Monsterrat;
+            margin: 20px;
+			text-align: center;
+			margin-top: 200px;
+        }
+        input[type="number"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button {
+			background-color: #ECE7B4; 
+			border: none;
+			color: #04AA6D;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+        }
+		button:hover {
+			background-color: #04AA6D;
+			color: white;
+			transition: .3s;
+	
+	</style>
+	
+	
+</head>
+
+<body>
+
+		<h1>Even or Odd Number</h1>
+		<input type="number" id="numberInput" placeholder="Enter a Number: " />
+		<button onclick="checkNumber()">Check Number</button>
+
+			<div id="result"></div>
+
+	<script>
+	
+	function checkNumber() {
+            const input = document.getElementById("numberInput").value;
+            const number = parseInt(input);
+            let resultText = "";
+            let evenSum = 0;
+            let oddSum = 0;
+            let compositeSum = 0;
+            let evenNumbers = [];
+            let oddNumbers = [];
+            let i = 1; 
+
+            if (isNaN(number)) {
+                resultText = "Please enter a valid number.";
+            } else {
+                
+                if (number % 2 === 0) {
+                    resultText += `${number} is EVEN NUMBER.<br><br>`;
+                    
+                    i = 2; 
+                    while (i <= number) {
+                        evenNumbers.push(i);
+                        evenSum += i;
+                        i += 2; 
+                    }
+                    resultText += `Even numbers: ${evenNumbers.join(", ")}<br><br>`;
+                    resultText += `Sum of all EVEN numbers up to ${number} is ${evenSum}.<br><br>`;
+                } else {
+                    resultText += `${number} is ODD NUMBER.<br><br>`;
+                    
+                    i = 1; 
+                    while (i <= number) {
+                        oddNumbers.push(i);
+                        oddSum += i;
+                        i += 2; 
+                    }
+                    resultText += `Odd numbers: ${oddNumbers.join(", ")}<br><br>`;
+                    resultText += `Sum of all ODD numbers up to ${number} is ${oddSum}.<br><br>`;
+                }
+
+                
+                i = 4; 
+                while (i <= number) {
+                    if (isComposite(i)) {
+                        compositeSum += i;
+                    }
+                    i++;
+                }
+                resultText += `Sum of all COMPOSITE numbers up to ${number} is ${compositeSum}.`;
+            }
+
+            document.getElementById("result").innerHTML = resultText;
+        }
+
+        function isComposite(num) {
+            if (num < 4) return false; 
+            for (let j = 2; j <= Math.sqrt(num); j++) {
+                if (num % j === 0) return true; 
+            }
+            return false; 
+        }
+		
+		
+
+            
+	
+	</script>
+
+
+</body>
+</html>
